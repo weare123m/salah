@@ -73,7 +73,7 @@ client.on('message', message => {
     })
 }
 });
-client.on('message', message => {
+ client.on('message', message => {
               if (!message.channel.guild) return;
       if(message.content =='G.count')
 	 
@@ -89,7 +89,6 @@ message.channel.send(`${user} has ${inviteCount} invites.`);
 });
   }
 });
- client
 client.on('ready', () => {
     console.log(`----------------`);
        console.log(`Desert Bot- Script By : le-titiz `);
