@@ -89,6 +89,55 @@ client.on('message', message => {
     })
 }
 });
+client.on('message', message => {
+  var args = message.content.split(" ").slice(1);    
+  if(message.content.startsWith(prefix + 'id')) {
+  var year = message.author.createdAt.getFullYear()
+  var month = message.author.createdAt.getMonth()
+  var day = message.author.createdAt.getDate()
+  var men = message.mentions.users.first();  
+  let args = message.content.split(' ').slice(1).join(' ');
+  if (args == '') {
+  var z = message.author;
+  }else {
+  var z = message.mentions.users.first();
+  }
+  
+  let d = z.createdAt;          
+  let n = d.toLocaleString();   
+  let x;                       
+  let y;                        
+  
+  if (z.presence.game !== null) {
+  y = `${z.presence.game.name}`;
+  } else {
+  y = "No Playing...";
+  }
+  if (z.bot) {
+  var w = 'BOT';
+  }else {
+  var w = 'MEMBER';
+  }
+  let embed = new Discord.RichEmbed()
+  .setColor('RANDOM')
+  .setTitle(`**INFO** ${z.username}`)
+  .addField('`Your Name`',`**<@` + `${z.id}` + `>**`, true)
+  .addField('`ID`', "**"+ `${z.id}` +"**",true)
+  .addField('`Status`','**'+y+'**' , true)
+  .addField('`Acount Type`',"**"+ w + "**",true)    
+  .addField('`Your Tag`',"**#" +  `${z.discriminator}**`,true)
+  .addField('`Your account created in`' ,year + "-"+ month +"-"+ day)    
+  .addField("`Entered the server in`", message.member.joinedAt.toLocaleString())    
+  .addField("`Last Message`", message.author.lastMessage)            
+  
+  .setThumbnail(`${z.avatarURL}`)
+  .setFooter(message.author.username, message.author.avatarURL)
+  
+  message.channel.send({embed});
+      if (!message) return message.reply('**ضع المينشان بشكل صحيح  ? **')
+  
+  }
+  });
 
 client.on('ready', () => {
     console.log(`----------------`);
