@@ -34,6 +34,22 @@ message.channel.send(embed)
 
 
 });
+ client.on('message', message => {
+              if (!message.channel.guild) return;
+      if(message.content =='G.count')
+	 
+      message.reply(`**${message.guild.memberCount}**`);
+    });
+    client.on('message', message => {
+   if(message.content.startsWith(prefix + "invites")) {
+    message.guild.fetchInvites().then(invs => {
+      let user = message.mentions.users.first() || message.author
+      let personalInvites = invs.filter(i => i.inviter.id === user.id);
+      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
+message.channel.send(`${user} has ${inviteCount} invites.`);
+});
+  }
+});
 client.on('message', function(msg) {
     if(msg.content.startsWith (prefix  + 'server')) {
       let embed = new Discord.RichEmbed()
@@ -73,22 +89,7 @@ client.on('message', message => {
     })
 }
 });
- client.on('message', message => {
-              if (!message.channel.guild) return;
-      if(message.content =='G.count')
-	 
-      message.reply(`**${message.guild.memberCount}**`);
-    });
-    client.on('message', message => {
-   if(message.content.startsWith(prefix + "invites")) {
-    message.guild.fetchInvites().then(invs => {
-      let user = message.mentions.users.first() || message.author
-      let personalInvites = invs.filter(i => i.inviter.id === user.id);
-      let inviteCount = personalInvites.reduce((p, v) => v.uses + p, 0);
-message.channel.send(`${user} has ${inviteCount} invites.`);
-});
-  }
-});
+
 client.on('ready', () => {
     console.log(`----------------`);
        console.log(`Desert Bot- Script By : le-titiz `);
