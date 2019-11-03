@@ -34,7 +34,7 @@ message.channel.send(embed)
 
 
 });
- client.on('message', message => {
+  client.on('message', message => {
               if (!message.channel.guild) return;
       if(message.content =='G.count')
 	 
